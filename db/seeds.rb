@@ -7,6 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'random_data'
 
+Post.find_or_create_by(title: "find_or_create_by Title", body: "find_or_create_by Body")
+Comment.find_or_create_by(post: Post.find_or_create_by(title: "find_or_create_by Title", body: "find_or_create_by Body"), body: "Comment Body")
 #Create Posts
 50.times do
   Post.create!(
