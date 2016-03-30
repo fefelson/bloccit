@@ -4,12 +4,8 @@ RSpec.describe Post, type: :model do
   let(:post) {Post.create!(title: "New Post Title", body: "New Post Body")}
 
   describe "attributes" do # Using Shoulda matchers http://matchers.shoulda.io/docs/v3.1.1/
-    it "responds to title" do
-      expect(post).to respond_to(:title)
-    end
+    it { should have_db_column(:title).of_type(:string) }
 
-    it "responds to body" do
-      expect(post).to respond_to(:body)
-    end
+    it { should have_db_column(:body).of_type(:text) }
   end
 end
