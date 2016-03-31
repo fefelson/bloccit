@@ -6,14 +6,19 @@ gem 'rails', '4.2.5'
 group :production do
 	gem 'pg'
 	gem 'rails_12factor'
-	end
+end
 
 group :development do
 	gem 'sqlite3'
-	end
+end
 
 group :development, :test do
 	gem 'rspec-rails','~>3.0'
+	gem 'shoulda-matchers', '~> 3.0'
+	gem 'pry-rails'
+	gem 'pry-byebug'
+	gem 'better_errors'
+	gem 'binding_of_caller'
 end
 
 # Use SCSS for stylesheets
