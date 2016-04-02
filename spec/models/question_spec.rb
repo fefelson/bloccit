@@ -1,17 +1,11 @@
 require 'rails_helper'
+
 RSpec.describe Question, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
-  let(:question) { Question.create!(title: "New Question Title", body: "New Question Body")}
 
-  describe "attributes" do
-    it "responds to title" do
-      expect(question).to respond_to(:title)
-    end
-
-    it "responds to body" do
-      expect(question).to respond_to(:body)
-    end
-
+  describe "attributes" do # Using Shoulda matchers http://matchers.shoulda.io/docs/v3.1.1/
+    it { should have_db_column(:title).of_type(:string) }
+    it { should have_db_column(:body).of_type(:text) }
+    it { should have_db_column(:resolved).of_type(:boolean) }
   end
 
 end

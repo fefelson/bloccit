@@ -28,5 +28,13 @@ puts "#{Post.count} posts created"
 end
 puts "#{Comment.count} comments created"
 
-puts "Seed finished"
+15.times do
+  Question.create!(
+  title: RandomData.random_sentence,
+  body: RandomData.random_paragraph,
+  resolved: false
+  )
+end
+puts "#{Question.count} questions created"
 
+puts "Seed finished"
