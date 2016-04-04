@@ -38,4 +38,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  
+  # Better Errors in the Cloud
+  BetterErrors::Middleware.allow_ip! '10.240.0.208'
 end
