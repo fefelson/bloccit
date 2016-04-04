@@ -41,6 +41,6 @@ Rails.application.configure do
   
   # Better Errors in the Cloud
   for i in 0..255 do
-    BetterErrors::Middleware.allow_ip! "10.240.0.#{i}"
+    BetterErrors::Middleware.allow_ip! "10.240.0.#{i.to_s}"
   end
 end
