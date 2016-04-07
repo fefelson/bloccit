@@ -13,6 +13,7 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:notice] = "Welcome to Bloccit #{@user.name}!"
+      create_session(@user)
       redirect_to root_path
 
     else
