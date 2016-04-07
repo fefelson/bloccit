@@ -1,0 +1,19 @@
+<div align="center">
+  <h1><b>Sign Up Confirmation</b></h1>
+    <h4><b>Are you sure these values are correct?</h3>
+
+    </b></h4>
+    <h5>
+      Email: <%= @user.email %>
+    </h5>
+    <h5>
+      Name: <%= @user.name %>
+    </h5>
+
+    <div class="col-md-4">
+        <%= button_to "Yes", {controller: "users", action: "create", params: params}, class: 'btn btn-success' %>
+        <%= link_to "No", new_user_path, class: 'btn btn-success' %>
+
+    </div>
+
+</div>
