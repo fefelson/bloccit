@@ -9,7 +9,7 @@ RSpec.describe Topic, type: :model do
   end
   
   describe 'associations' do
-    it {is_expected.to have_many(:posts)}
+    it { is_expected.to have_many(:posts).dependent(:destroy) }
   end
 
 end

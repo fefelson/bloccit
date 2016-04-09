@@ -8,7 +8,7 @@ RSpec.describe Post, type: :model do
   end
 
   describe 'associations' do # Using Shoulda matchers http://matchers.shoulda.io/docs/v3.1.1/
-    it { should have_many(:comments) }
+    it { should have_many(:comments).dependent(:destroy) }
   end
   
   describe 'validations' do 
