@@ -2,8 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Topic, type: :model do
   let(:topic) { Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph) }
-
-  it {is_expected.to have_many(:posts)}
   
   describe "attributes" do
     it { should have_db_column(:name).of_type(:string)}
@@ -14,6 +12,10 @@ RSpec.describe Topic, type: :model do
       expect(topic.public).to be(true)
 
     end
+  end
+  
+  describe 'associations' do
+    it {is_expected.to have_many(:posts)}
   end
 
 end
