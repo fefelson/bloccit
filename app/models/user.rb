@@ -2,7 +2,6 @@ class User < ActiveRecord::Base
 
   has_many :posts
 
-
   before_save -> (){ self.email = email.downcase }, if: ->(){ email.present? }
   before_save { self.role ||= :member }
 
