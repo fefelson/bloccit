@@ -1,19 +1,17 @@
-<div align="center">
-  <h1><b>Sign Up Confirmation</b></h1>
-    <h4><b>Are you sure these values are correct?</h3>
 
-    </b></h4>
-    <h5>
+  <h1>Sign Up Confirmation</h1>
+    <p>Are you sure these values are correct?</p>
+    <p>
       Email: <%= @user.email %>
-    </h5>
-    <h5>
+    </p>
+    <p>
       Name: <%= @user.name %>
-    </h5>
+    </p>
 
+  <div class='row'>
     <div class="col-md-4">
-        <%= button_to "Yes", {controller: "users", action: "create", params: params}, class: 'btn btn-success' %>
+        <%= link_to "Yes", {controller: "users", action: "create", params: params}, method: :post, class: 'btn btn-success' %>
         <%= link_to "No", new_user_path, class: 'btn btn-success' %>
-
     </div>
+  </div>
 
-</div>
