@@ -10,6 +10,8 @@ RSpec.describe Post, type: :model do
   describe 'associations' do # Using Shoulda matchers http://matchers.shoulda.io/docs/v3.1.1/
     it { should belong_to(:user)}
     it { should have_many(:comments).dependent(:destroy) }
+    it { is_expected.to have_many(:labelings)}
+    it { is_expected.to have_many(:labels).through(:labelings)}
   end
 
   describe 'validations' do

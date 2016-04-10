@@ -7,11 +7,13 @@ RSpec.describe Topic, type: :model do
     it { should have_db_column(:description).of_type(:text)}
     it { should have_db_column(:public).of_type(:boolean).with_options({default: true}) }
   end
-  
+
   describe 'associations' do
     it { is_expected.to have_many(:posts).dependent(:destroy) }
+    it { is_expected.to have_many(:labelings)}
+    it { is_expected.to have_many(:labels).through(:labelings)}
   end
-  
+
   describe 'validations' do
     it { is_expected.to validate_length_of(:name).is_at_least(5)}
     it { is_expected.to validate_length_of(:description).is_at_least(15)}
