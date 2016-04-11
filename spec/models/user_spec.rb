@@ -7,6 +7,7 @@ RSpec.describe User, type: :model do
   it { is_expected.to have_many(:posts)}
   it { is_expected.to have_many(:comments)}
 
+
   describe "attributes" do
     it { should have_db_column(:name).of_type(:string) }
     it { should have_db_column(:email).of_type(:string) }
@@ -53,6 +54,10 @@ RSpec.describe User, type: :model do
         expect(user.admin?).to be_truthy
       end
     end
+  end
+  
+  describe 'associations' do
+    it { is_expected.to have_many(:posts) }
   end
 
   describe 'validations' do
