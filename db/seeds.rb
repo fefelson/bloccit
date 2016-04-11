@@ -11,7 +11,25 @@ Comment.find_or_create_by(post: Post.find_or_create_by(title: "find_or_create_by
     password: RandomData.random_sentence
   )
 end
+
+unless User.find_by(email: 'edwrdwalsh@gmail.com')
+  user = User.first
+  user.update_attributes!(
+    email: 'edwrdwalsh@gmail.com',
+    password: 'helloworld'
+  )
+end
+
+unless User.find_by(email: 'admin@example.com')
+  User.create!(
+    name: 'admin example',
+    email: 'admin@example.com',
+    password: 'helloworld'
+  )
+end
+
 users = User.all
+puts "#{users.count} users created."
 
 #Create Topics
 15.times do
@@ -21,6 +39,7 @@ users = User.all
   )
 end
 topics = Topic.all
+puts "#{topics.count} topics created."
 
 #Create Posts
 50.times do
@@ -32,6 +51,7 @@ topics = Topic.all
   )
 end
 posts = Post.all
+puts "#{posts.count} posts created."
 
 #Create Comments
 100.times do
@@ -40,15 +60,7 @@ posts = Post.all
     body: RandomData.random_paragraph
   )
 end
-
-user = User.first
-user.update_attributes!(
-  email: 'edwrdwalsh@gmail.com',
-  password: 'helloworld'
-)
+puts "#{Comment.count} comments created"
 
 puts "Seed finished"
-puts "#{User.count} users created"
-puts "#{Topic.count} topics created"
-puts "#{Post.count} posts created"
-puts "#{Comment.count} comments created"
+
