@@ -11,7 +11,7 @@ RSpec.describe Comment, type: :model do
        expect(comment).to respond_to(:body)
      end
    end
- end
+   
   describe "attributes" do # Using Shoulda matchers http://matchers.shoulda.io/docs/v3.1.1/
     it { should have_db_column(:body).of_type(:text) }
   end
