@@ -25,6 +25,7 @@ RSpec.describe Comment, type: :model do
 
   describe 'associations' do # Using Shoulda matchers http://matchers.shoulda.io/docs/v3.1.1/
     it { should belong_to(:post) }
+    it { should belong_to(:topic)}
   end
 
 end

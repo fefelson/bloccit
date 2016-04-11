@@ -10,6 +10,7 @@ RSpec.describe Topic, type: :model do
 
   describe 'associations' do
     it { is_expected.to have_many(:posts).dependent(:destroy) }
+    it { is_expected.to have_many(:comments).dependent(:destroy) }
     it { is_expected.to have_many(:labelings)}
     it { is_expected.to have_many(:labels).through(:labelings)}
   end
