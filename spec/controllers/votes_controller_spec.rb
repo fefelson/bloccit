@@ -7,6 +7,7 @@ RSpec.describe VotesController, type: :controller do
   let(:other_user) { User.create!(name: RandomData.random_name, email: RandomData.random_email, password: "helloworld", role: :member )}
   let(:my_topic) { Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph)}
   let(:user_post) { my_topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: other_user )}
+  let(:my_post) {my_topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: my_user)}
   let(:my_vote) { Vote.create!(value: 1)}
 
   context "guest" do
@@ -85,8 +86,16 @@ RSpec.describe VotesController, type: :controller do
 
       it ":back redirects to posts topic show" do
         request.env["HTTP_REFERER"] = topic_path(my_topic)
-        post :down_vote, post_id: user_post.id 
+        post :down_vote, post_id: user_post.id
         expect(response).to redirect_to(my_topic)
+      end
+    end
+
+    describe "additional vote on users' own post" do
+      it "doesn't register a vote" do
+        votes = my_post.votes.count
+        post :up_vote, post_id: my_post.id
+        expect(my_post.votes.count).to eq(votes)
       end
     end
   end

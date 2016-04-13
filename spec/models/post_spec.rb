@@ -1,4 +1,5 @@
 require 'rails_helper'
+include SessionsHelper
 
 RSpec.describe Post, type: :model do
 
@@ -75,5 +76,12 @@ RSpec.describe Post, type: :model do
       end
     end
   end
+
+  describe "create_vote callback" do
+    it "initiates value of vote to 1" do
+      expect(post.points).to eq(1)
+    end
+  end
+
 
 end
