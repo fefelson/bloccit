@@ -1,8 +1,5 @@
 require 'random_data'
 
-Post.find_or_create_by(title: "find_or_create_by Title", body: "find_or_create_by Body")
-Comment.find_or_create_by(post: Post.find_or_create_by(title: "find_or_create_by Title", body: "find_or_create_by Body"), body: "Comment Body")
-
 #Create Users
 5.times do
   User.create!(
