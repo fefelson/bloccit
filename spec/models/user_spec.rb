@@ -21,8 +21,8 @@ RSpec.describe User, type: :model do
   describe "attributes" do
     it { should have_db_column(:name).of_type(:string) }
     it { should have_db_column(:email).of_type(:string) }
-    it { should have_db_column(:role).of_type(:integer).with_options({null: false, default: 0})
-    it { should define_enum_for(:role) }}
+    it { should have_db_column(:role).of_type(:integer).with_options({null: false, default: 0}) }
+    it { should define_enum_for(:role) }
   end
   
   describe 'validations' do
