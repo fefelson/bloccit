@@ -1,9 +1,9 @@
 require 'random_data'
 
 #Create Users
-5.times do
+5.times do |i|
   User.create!(
-    name: RandomData.random_name,
+    name: "#{i} " + RandomData.random_name,
     email: RandomData.random_email,
     password: RandomData.random_sentence
   )
@@ -37,9 +37,9 @@ users = User.all
 puts "#{users.count} users created."
 
 #Create Topics
-15.times do
+25.times do |i|
   Topic.create!(
-    name: RandomData.random_sentence,
+    name: "#{i} " + RandomData.random_sentence,
     description: RandomData.random_paragraph
   )
 end
@@ -47,11 +47,11 @@ topics = Topic.all
 puts "#{topics.count} topics created."
 
 #Create Posts
-50.times do
+100.times do |i|
   Post.create!(
     user: users.sample,
     topic: topics.sample,
-    title: RandomData.random_sentence,
+    title: "#{i} " + RandomData.random_sentence,
     body: RandomData.random_paragraph
   )
 end
@@ -59,10 +59,10 @@ posts = Post.all
 puts "#{posts.count} posts created."
 
 #Create Comments
-100.times do
+200.times do |i|
   Comment.create!(
     post: posts.sample,
-    body: RandomData.random_paragraph
+    body: "#{i} " + RandomData.random_paragraph
   )
 end
 puts "#{Comment.count} comments created"
