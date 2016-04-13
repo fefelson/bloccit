@@ -38,9 +38,12 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  
+
   # Better Errors in the Cloud
   for i in 0..255 do
     BetterErrors::Middleware.allow_ip! "10.240.0.#{i.to_s}"
   end
+
+  # config.action_view.raise_on_missing_translations = true
+  config.action_mailer.default_url_options = { host: 'localhost'}
 end

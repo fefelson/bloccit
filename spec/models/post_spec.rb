@@ -15,6 +15,7 @@ RSpec.describe Post, type: :model do
     it { should belong_to(:user)}
     it { should have_many(:comments).dependent(:destroy) }
     it { is_expected.to have_many(:votes)}
+    it { is_expected.to have_many(:favorites)}
     it { is_expected.to have_many(:labelings)}
     it { is_expected.to have_many(:labels).through(:labelings)}
   end
