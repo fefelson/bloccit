@@ -1,0 +1,7 @@
+New post "<%= @post.title %>" created.
+You will be informed when someone comments on it.
+<%= "=" * (@post.title.length + 12) %>
+
+<%= @post.body %>
+
+Visit online at: <%= topic_post_url(@post.topic, @post) %>

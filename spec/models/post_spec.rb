@@ -77,4 +77,10 @@ RSpec.describe Post, type: :model do
     end
   end
 
+  describe "after create favorite_post" do
+    it "favorites the users post after it is created" do
+      expect(user.favorites.find_by_post_id(post.id)).not_to be_nil
+    end
+  end
+
 end
