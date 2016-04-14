@@ -13,6 +13,12 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def authorize_user(can_method, *args)
+    unless send(can_method, *args)
+      raise Exceptions::NotAuthorizedError
+    end
+  end
+  
   def user_not_authorized exception
     flash[:alert] = "You are not authorized to do that."
     redirect_to(request.referrer || root_path)

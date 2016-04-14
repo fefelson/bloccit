@@ -67,11 +67,4 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :body)
   end
 
-  def authorize_user(can_method, *args)
-
-    unless send(can_method, *args)
-      raise Exceptions::NotAuthorizedError
-    end
-  end
-
 end

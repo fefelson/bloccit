@@ -21,7 +21,8 @@ unless User.find_by(email: 'admin@example.com')
   User.create!(
     name: 'admin example',
     email: 'admin@example.com',
-    password: 'helloworld'
+    password: 'helloworld',
+    role: 'admin'
   )
 end
 
