@@ -124,6 +124,7 @@ RSpec.describe PostsController, type: :controller do
 
     describe "GET edit" do
       it "returns http redirect" do
+        request.env["HTTP_REFERER"] =  topic_post_path(my_topic.id, my_post.id) 
         get :edit, topic_id: my_topic.id, id: my_post.id
         expect(response).to redirect_to([my_topic, my_post])
       end
@@ -133,7 +134,7 @@ RSpec.describe PostsController, type: :controller do
       it "returns http redirect" do
         new_title = RandomData.random_sentence
         new_body = RandomData.random_paragraph
-
+        request.env["HTTP_REFERER"] =  topic_post_path(my_topic.id, my_post.id) 
         put :update, topic_id: my_topic.id, id: my_post.id, post: {title: new_title, body: new_body}
         expect(response).to redirect_to([my_topic, my_post])
       end
@@ -141,6 +142,7 @@ RSpec.describe PostsController, type: :controller do
 
     describe "DELETE destroy" do
       it "returns http redirect" do
+        request.env["HTTP_REFERER"] =  topic_post_path(my_topic.id, my_post.id) 
         delete :destroy, topic_id: my_topic.id, id: my_post.id
         expect(response).to redirect_to([my_topic, my_post])
       end
