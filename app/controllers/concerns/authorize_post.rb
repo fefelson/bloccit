@@ -18,7 +18,7 @@ module AuthorizePost
   
   def can_update_post?(post)
     return false unless current_user.present?
-    return true if current_user.admin?
+    return true if current_user.admin? || current_user.moderator?
     current_user == post.user
   end
   
@@ -31,7 +31,9 @@ module AuthorizePost
   end
   
   def can_destroy_post?(post)
-    can_update_post?(post)
+    return false unless current_user.present?
+    return true if current_user.admin?
+    current_user == post.user
   end
 
 end
