@@ -1,12 +1,9 @@
 class PostsController < ApplicationController
   include AuthorizePost
   before_action :require_sign_in, except: :show
-<<<<<<< HEAD
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
 
-=======
->>>>>>> xm_40_checkpoint
 
   def show
     @post = Post.find(params[:id])
