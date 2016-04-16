@@ -84,4 +84,29 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
+  describe "GET show" do
+
+    before do
+      post :create, user: new_user_attributes
+      post :create, topic: {create: :topic}
+      post :create, post: {create: :post, topic: topic, user: user}
+
+    end
+
+    it "returns http success" do
+      get :show, {id: user.id}
+      expect(response).to have_http_status(:success)
+    end
+
+    it "renders the #show view" do
+      get :show, {id: user.id}
+      expect(response).to render_template :show
+    end
+
+    it "assigns user to @user" do
+      get :show, {id: user.id}
+      expect(assigns(:user)).to eq(user)
+    end
+  end
+
 end

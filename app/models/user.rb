@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 
   validates :password, presence: true, length: {minimum: 6}, if: "password_digest.nil?"
   validates :password, length: {minimum: 6}, allow_blank: true
-  
+
   validates :role, presence: true,
     inclusion: { in: roles.keys , message: "%{value} is not a valid role" }
 
@@ -32,5 +32,10 @@ class User < ActiveRecord::Base
     gravatar_id = Digest::MD5::hexdigest(self.email).downcase
     "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{size}"
   end
+
+  def posts_comments?
+    return self.posts.count > 0 || self.comments.count > 0
+  end
+
 
 end
