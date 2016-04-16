@@ -3,9 +3,9 @@ include SessionsHelper
 
 RSpec.describe FavoritesController, type: :controller do
 
-  let(:my_user) { User.create!(name: 'Bloccit User', email: 'user@bloccit.com', password: 'helloworld')}
-  let(:my_topic) { Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph)}
-  let(:my_post) {my_topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: my_user)}
+  let(:my_topic) { create(:topic)}
+  let(:my_user) { create(:user)}
+  let(:my_post) { create(:post, topic: my_topic, user: my_user)}
 
   context 'guest user' do
     describe 'POST create' do
@@ -44,7 +44,7 @@ RSpec.describe FavoritesController, type: :controller do
 
     describe 'DELETE destroy' do
       it 'redirects to the posts show view' do
-        favorite = my_user.favorites.where( post: my_post ).create 
+        favorite = my_user.favorites.where( post: my_post ).create
         delete :destroy, { post_id: my_post.id, id: favorite.id }
         expect(response).to redirect_to([my_topic, my_post])
       end

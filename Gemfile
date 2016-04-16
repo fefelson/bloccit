@@ -19,6 +19,7 @@ group :development, :test do
 	gem 'pry-byebug'
 	gem 'better_errors'
 	gem 'binding_of_caller'
+	gem 'factory_girl_rails', '~> 4.0'
 end
 
 # Use SCSS for stylesheets
