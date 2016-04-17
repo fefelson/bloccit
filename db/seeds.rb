@@ -45,11 +45,23 @@ end
 users = User.all
 puts "#{users.count} users created."
 
+#Create Labels
+unless Label.all.any?
+  label_names = %w(rogue red gold viper wolf bandit yellow blade blue dantooine)
+  label_names.each do |label_name|
+    Label.create!(
+      name: label_name
+      )
+  end
+end
+labels = Label.all
+
 #Create Topics
 25.times do |i|
   Topic.create!(
     name: "#{i} " + RandomData.random_sentence,
-    description: RandomData.random_paragraph
+    description: RandomData.random_paragraph,
+    labels: rand(0..5).times.map { labels.sample }.uniq  
   )
 end
 topics = Topic.all
@@ -57,17 +69,19 @@ puts "#{topics.count} topics created."
 
 #Create Posts
 100.times do |i|
-  Post.create!(
+  post = Post.create!(
     user: users.sample,
     topic: topics.sample,
     title: "#{i} " + RandomData.random_sentence,
-    body: RandomData.random_paragraph
+    body: RandomData.random_paragraph,
+    labels: rand(0..5).times.map { labels.sample }.uniq  
   )
   post.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
   rand(1..5).times { post.votes.create!(value: [-1,1].sample, user: users.sample)}
 end
 posts = Post.all
 puts "#{posts.count} posts created."
+puts "#{Vote.count} votes created."
 
 #Create Comments
 200.times do |i|
@@ -80,3 +94,7 @@ end
 puts "#{Comment.count} comments created"
 
 puts "Seed finished"
+<<<<<<< HEAD
+=======
+
+>>>>>>> xm_42_checkpoint

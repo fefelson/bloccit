@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  
+
   describe "attributes" do
     it { should have_db_column(:name).of_type(:string) }
     it { should have_db_column(:email).of_type(:string) }
@@ -10,7 +10,9 @@ RSpec.describe User, type: :model do
   end
 
   describe 'associations' do
-    it { should have_many(:posts) }
+    it { should have_many(:posts).dependent(:destroy) }
+    it { should have_many(:comments).dependent(:destroy) }
+    it { should have_many(:votes).dependent(:destroy) }
   end
 
   describe 'validations' do
