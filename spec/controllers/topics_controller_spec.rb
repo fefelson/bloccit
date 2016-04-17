@@ -21,6 +21,11 @@ RSpec.describe TopicsController, type: :controller do
         get :index
         expect(assigns(:topics)).not_to include(my_private_topic)
       end
+
+      it "does include public topics" do
+        get :index
+        expect(assigns(:topics)).to include(my_topic)
+      end
     end
 
     describe "GET show" do
