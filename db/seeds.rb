@@ -94,7 +94,3 @@ end
 puts "#{Comment.count} comments created"
 
 puts "Seed finished"
-<<<<<<< HEAD
-=======
-
->>>>>>> xm_42_checkpoint
