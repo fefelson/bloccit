@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
 
+  let(:user) { create(:user)}
+  let(:post) { create(:post)}
 
   describe "attributes" do # Using Shoulda matchers http://matchers.shoulda.io/docs/v3.1.1/
     it { should have_db_column(:body).of_type(:text) }
@@ -11,7 +13,7 @@ RSpec.describe Comment, type: :model do
     it { should belong_to(:post) }
     it { should belong_to(:user) }
   end
-  
+
   describe 'validations' do
     #body
     it { should validate_presence_of(:body) }
