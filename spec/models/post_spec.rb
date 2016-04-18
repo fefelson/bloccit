@@ -72,14 +72,15 @@ RSpec.describe Post, type: :model do
       it "updates the rank when a down vote is created" do
         old_rank = post.rank
         post.votes.create!(value: -1)
-        expect(post.rank).to eq (old_rank -1)
+        expect(post.rank).to eq (old_rank - 1)
       end
     end
   end
 
   describe "after create favorite_post" do
     it "favorites the users post after it is created" do
-      expect(user.favorites.find_by_post_id(post.id)).not_to be_nil
+      @post = post
+      expect(@post.user.favorites.find_by(post_id: @post.id)).to eq(Favorite.first)
     end
   end
 
