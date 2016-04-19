@@ -59,6 +59,7 @@ labels = Label.all
 end
 topics = Topic.all
 puts "#{topics.count} topics created."
+puts "#{Topic.where(public: false).count} private topics created."
 
 #Create Posts
 100.times do |i|
