@@ -2,8 +2,6 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
-let(:user) {create(:user)}
-
   describe "attributes" do
     it { should have_db_column(:name).of_type(:string) }
     it { should have_db_column(:email).of_type(:string) }
@@ -12,9 +10,12 @@ let(:user) {create(:user)}
   end
 
   describe 'associations' do
-    it { should have_many(:posts) }
+    it { should have_many(:posts).dependent(:destroy) }
+    it { should have_many(:comments).dependent(:destroy) }
+    it { should have_many(:votes).dependent(:destroy) }
+    it { should have_many(:favorites).dependent(:destroy) }
   end
-
+  
   describe 'validations' do
     #password
     it { is_expected.to validate_presence_of(:password)}
@@ -33,22 +34,24 @@ let(:user) {create(:user)}
   end
 
   describe "#favorite_for(post)" do
-    before do
-      topic = Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph)
-      @post = topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
+    before do 
+      @user = User.create!(email: 'admin@example.com', name: 'admin', password: 'helloworld')
+      @topic = Topic.create!(name: "Topic of discussion", description: "This has to be a little longer but not too long.")
+      @post = Post.create!(title: "A Post for all ages", body: "Texty Texting Textily", user: @user, topic: @topic)
     end
 
     it "returns nil if user has not fovrited the post" do
-      expect(user.favorite_for(@post)).to be_nil
+      expect(@user.favorite_for(@post)).to be_nil
     end
 
     it "returns the appropriate favorite if it exists" do
-      favorite = user.favorites.where(post: @post).create
-      expect(user.favorite_for(@post)).to eq(favorite)
+      favorite = @user.favorites.where(post: @post).create
+      expect(@user.favorite_for(@post)).to eq(favorite)
     end
   end
 
   describe ".avatar_url" do
+    let(:user) {create(:user)}
     let(:know_user) { create(:user, email: "blochead@bloc.io")}
 
     it "returns the proper Gravatar url for a known email entity" do

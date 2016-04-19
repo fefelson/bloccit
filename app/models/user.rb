@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   #enum helper has to be before validation for validation to work
   enum role: [:member, :admin]
+
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
