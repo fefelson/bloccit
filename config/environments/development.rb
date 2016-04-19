@@ -40,8 +40,8 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   # Better Errors in the Cloud
-  for i in 0..255 do
-    BetterErrors::Middleware.allow_ip! "10.240.0.#{i.to_s}"
+  if ENV['IP']
+    BetterErrors::Middleware.allow_ip! ENV['IP']
   end
 
   # config.action_view.raise_on_missing_translations = true
