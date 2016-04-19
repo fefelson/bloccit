@@ -49,10 +49,11 @@ end
 labels = Label.all
 
 #Create Topics
-25.times do |i|
+35.times do |i|
   Topic.create!(
     name: "#{i} " + RandomData.random_sentence,
     description: RandomData.random_paragraph,
+    public: (rand(1..4) != 1),
     labels: rand(0..5).times.map { labels.sample }.uniq  
   )
 end
