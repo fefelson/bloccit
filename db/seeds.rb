@@ -34,14 +34,6 @@ unless User.find_by(email: 'member@example.com')
   )
 end
 
-unless User.find_by(email: 'member@example.com')
-  User.create!(
-    name: 'Member User',
-    email: 'member@example.com',
-    password: 'helloworld'
-  )
-end
-
 users = User.all
 puts "#{users.count} users created."
 
@@ -57,15 +49,17 @@ end
 labels = Label.all
 
 #Create Topics
-25.times do |i|
+35.times do |i|
   Topic.create!(
     name: "#{i} " + RandomData.random_sentence,
     description: RandomData.random_paragraph,
+    public: (rand(1..4) != 1),
     labels: rand(0..5).times.map { labels.sample }.uniq  
   )
 end
 topics = Topic.all
 puts "#{topics.count} topics created."
+puts "#{Topic.where(public: false).count} private topics created."
 
 #Create Posts
 100.times do |i|
