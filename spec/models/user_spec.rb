@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
+  let(:user) {create(:user)}
+
   describe "attributes" do
     it { should have_db_column(:name).of_type(:string) }
     it { should have_db_column(:email).of_type(:string) }
@@ -34,7 +36,7 @@ RSpec.describe User, type: :model do
   end
 
   describe "#favorite_for(post)" do
-    before do 
+    before do
       @user = User.create!(email: 'admin@example.com', name: 'admin', password: 'helloworld')
       @topic = Topic.create!(name: "Topic of discussion", description: "This has to be a little longer but not too long.")
       @post = Post.create!(title: "A Post for all ages", body: "Texty Texting Textily", user: @user, topic: @topic)
@@ -56,6 +58,12 @@ RSpec.describe User, type: :model do
     it "returns the proper Gravatar url for a known email entity" do
       expected_gravatar = "http://gravatar.com/avatar/bb6d1172212c180cfbdb7039129d7b03.png?s=48"
       expect(know_user.avatar_url(48)).to eq(expected_gravatar)
+    end
+  end
+
+  describe "#generate_auth_token" do
+    it "creates a token" do
+      expect(user.auth_token).to_not be_nil
     end
   end
 
