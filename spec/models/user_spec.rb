@@ -34,7 +34,7 @@ RSpec.describe User, type: :model do
   end
 
   describe "#favorite_for(post)" do
-    before do
+    before do 
       @user = User.create!(email: 'admin@example.com', name: 'admin', password: 'helloworld')
       @topic = Topic.create!(name: "Topic of discussion", description: "This has to be a little longer but not too long.")
       @post = Post.create!(title: "A Post for all ages", body: "Texty Texting Textily", user: @user, topic: @topic)
@@ -61,7 +61,8 @@ RSpec.describe User, type: :model do
 
   describe "#generate_auth_token" do
     it "creates a token" do
-      expect(user.auth_token).to_not be_nil
+      @user = create :user
+      expect(@user.auth_token).to_not be_nil
     end
   end
 
