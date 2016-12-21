@@ -3,8 +3,8 @@ require 'random_data'
 #Create Users
 5.times do |i|
   User.create!(
-    name: "#{i} " + RandomData.random_name,
-    email: RandomData.random_email,
+    name: Faker::Name.name,
+    email: Faker::Internet.email,
     password: RandomData.random_sentence
   )
 end
@@ -51,10 +51,10 @@ labels = Label.all
 #Create Topics
 35.times do |i|
   Topic.create!(
-    name: "#{i} " + RandomData.random_sentence,
-    description: RandomData.random_paragraph,
+    name: Faker::Hipster.sentence,
+    description: Faker::Hipster.paragraph,
     public: (rand(1..4) != 1),
-    labels: rand(0..5).times.map { labels.sample }.uniq  
+    labels: rand(0..5).times.map { labels.sample }.uniq
   )
 end
 topics = Topic.all
@@ -66,9 +66,9 @@ puts "#{Topic.where(public: false).count} private topics created."
   post = Post.create!(
     user: users.sample,
     topic: topics.sample,
-    title: "#{i} " + RandomData.random_sentence,
-    body: RandomData.random_paragraph,
-    labels: rand(0..5).times.map { labels.sample }.uniq  
+    title: Faker::Hipster.sentence,
+    body: Faker::Hipster.paragraph,
+    labels: rand(0..5).times.map { labels.sample }.uniq
   )
   post.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
   rand(1..5).times { post.votes.create!(value: [-1,1].sample, user: users.sample)}
@@ -82,7 +82,7 @@ puts "#{Vote.count} votes created."
   Comment.create!(
     user: users.sample,
     post: posts.sample,
-    body: "#{i} " + RandomData.random_paragraph
+    body: Faker::Hipster.paragraph
   )
 end
 puts "#{Comment.count} comments created"

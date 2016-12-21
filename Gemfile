@@ -1,45 +1,34 @@
 source 'https://rubygems.org'
 
-# Bundle edge Rails instead: 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5'
+
+gem 'rails', '4.2.6'   # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'sass-rails', '~> 5.0'   # Use SCSS for stylesheets
+gem 'uglifier', '>= 1.3.0'   # Use Uglifier as compressor for JavaScript assets
+gem 'coffee-rails', '~> 4.1.0'   # Use CoffeeScript for .coffee assets and views
+gem 'jquery-rails'   # Use jquery as the JavaScript library
+gem 'turbolinks'   # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+gem 'bootstrap-sass'   # Sass powered version of the bootstrap html, css, and javascript framework
+gem 'pry'   # Powerful alternative to the standard interactive ruby shell
+gem 'figaro', '1.0'   # Makes it easy to securly configure rails applications
+gem 'bcrypt'
+gem 'faker'
 
 group :production do
-	gem 'pg'
-	gem 'rails_12factor'
+  gem 'pg'   # The ruby interface to the PostgreSQL RDBMS
+  gem 'rails_12factor'   # Enables serving assets in production and setting your logger to standard out
 end
 
 group :development do
-	gem 'sqlite3'
+  gem 'sqlite3'   # Use sqlite3 as the database for Active Record
 end
 
 group :development, :test do
-	gem 'rspec-rails','~>3.0'
-	gem 'shoulda-matchers', '~> 3.0'
-	gem 'pry-rails'
-	gem 'pry-byebug'
-	gem 'better_errors'
-	gem 'binding_of_caller'
-	gem 'factory_girl_rails', '~> 4.0'
+  gem 'spring'   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'rspec-rails','~>3.0'   # A testing framework for rails
+  gem 'shoulda-matchers','~>3.0'   # Provides RSpec one-liners that test common Rails functionality.
+  gem 'pry-rails'   # Causes rails console to open pry
+  gem 'pry-byebug'   # Adds step-by-step debugging adn stack navigation capabilities to pry using byebug
+  gem 'better_errors'   # Replaces the standard Rails error page with a much better and more useful error page
+  gem 'binding_of_caller'   # Provides the Binding#of_caller method
+	gem 'factory_girl_rails', '~> 4.0'   # A fixtures replacement with a straightforward definition syntax, support for multiple build strategies, and support for multiple factories for the same class
 end
-
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
-
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
-
-# Use CoffeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
-
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
-
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
-
-gem 'bootstrap-sass'
-
-# Used for encrypting User password_digest
-gem 'bcrypt'
-
-gem 'figaro', '1.0'
